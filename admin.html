@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just for learning</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .terminal {
+            height: 500px;
+            overflow-y: scroll;
+            border: 1px solid #333;
+            padding: 15px;
+            background-color: #111;
+        }
+        .input-line {
+            display: flex;
+            margin-top: 10px;
+        }
+        .prompt {
+            color: #0f0;
+            margin-right: 10px;
+        }
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .glow {
+            text-shadow: 0 0 5px #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="glow">>_ TERMINAL ACCESS // ROOT PRIVILEGES GRANTED</h1>
+            <p>SYSTEM: DarkNet OS v3.1.4 // USER: ModhuSudhan Roy </p>
+        </div>
+        
+        <div class="terminal" id="terminal">
+            <p>> INITIALIZING SYSTEM BYPASS SEQUENCE...</p>
+            <p>> LOADING ENCRYPTION KEYS...</p>
+            <p>> ESTABLISHING TOR CONNECTION...</p>
+            <p>> CONNECTED TO DARKNET NODE #4872</p>
+            <p>> SCANNING TARGET NETWORK...</p>
+            <p>> FIREWALL DETECTED: CISCO ASA 5510</p>
+            <p>> EXPLOITING CVE-2021-44228...</p>
+            <p>> BYPASSING INTRUSION DETECTION...</p>
+            <p>> ROOT ACCESS OBTAINED</p>
+            <p>> DOWNLOADING DATABASE...</p>
+            <p>> 151.0.1.1:54 - POSTGRESQL ADMIN CREDENTIALS CAPTURED</p>
+            <p>> WIPING LOGS...</p>
+            <p>> COVERING TRACES...</p>
+            <p>> MISSION COMPLETE</p>
+            <p>> </p>
+            <p>> ACCESS NEW SYSTEM? [Y/N]</p>
+        </div>
+        
+        <div class="input-line">
+            <span class="prompt">root@darknet:~#</span>
+            <span id="command">_<span class="cursor">|</span></span>
+        </div>
+    </div>
+
+    <script>
+        // Hollywood hacker effect - random text generation
+        const terminal = document.getElementById('terminal');
+        const command = document.getElementById('command');
+        
+        const hackerText = [
+            "> SCANNING VULNERABILITIES...",
+            "> INJECTING SQL PAYLOAD...",
+            "> BRUTE FORCING SSH...",
+            "> 23% COMPLETE...",
+            "> FOUND WEAK ENCRYPTION...",
+            "> DECRYPTING RSA KEY...",
+            "> BYPASSING 2FA...",
+            "> ELEVATING PRIVILEGES...",
+            "> ROOT ACCESS GRANTED",
+            "> EXFILTRATING DATA..."
+        ];
+        
+        let counter = 0;
+        
+        function addHackerText() {
+            if (counter < hackerText.length) {
+                const p = document.createElement('p');
+                p.textContent = hackerText[counter];
+                terminal.appendChild(p);
+                terminal.scrollTop = terminal.scrollHeight;
+                counter++;
+                setTimeout(addHackerText, Math.random() * 2000 + 500);
+            }
+        }
+        
+        // Start the effect after 3 seconds
+        setTimeout(addHackerText, 3000);
+        
+        // Fake command input
+        const commands = ["hydra -l admin -P rockyou.txt ssh://192.168.1.1", 
+                         "nmap -sS -A -T4 target.com",
+                         "sqlmap -u 'victim.com/search?id=1' --dbs",
+                         "msfconsole",
+                         "use exploit/multi/handler",
+                         "set payload windows/meterpreter/reverse_tcp",
+                         "exploit"];
+        
+        let cmdIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeCommand() {
+            const currentCmd = commands[cmdIndex];
+            
+            if (isDeleting) {
+                command.textContent = currentCmd.substring(0, charIndex-1) + '_';
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    cmdIndex = (cmdIndex + 1) % commands.length;
+                    setTimeout(typeCommand, 500);
+                } else {
+                    setTimeout(typeCommand, 50);
+                }
+            } else {
+                command.textContent = currentCmd.substring(0, charIndex) + '_';
+                charIndex++;
+                
+                if (charIndex > currentCmd.length) {
+                    isDeleting = true;
+                    setTimeout(typeCommand, 1500);
+                } else {
+                    setTimeout(typeCommand, Math.random() * 100 + 50);
+                }
+            }
+        }
+        
+        // Start typing effect
+        setTimeout(typeCommand, 4000);
+    </script>
+</body>
+</html>
